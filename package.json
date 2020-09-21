@@ -1,5 +1,5 @@
 {
-  "name": "patterns-as-events",
+  "name": "listen-for-patterns",
   "version": "1.0.0",
   "description": "",
   "main": "js/extended-events",
