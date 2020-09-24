@@ -60,8 +60,8 @@ class EventEmitterExtended extends events_1.EventEmitter {
             return this;
         }
     }
-    untill(event, untill, callback) {
-        this.once(untill, () => this.removeListener(event, callback));
+    untill(event, untill, callback, finishedcb = () => { }) {
+        this.once(untill, () => { this.removeListener(event, callback); finishedcb(); });
         return this.addListener(event, callback);
     }
 }

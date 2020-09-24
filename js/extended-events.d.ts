@@ -18,6 +18,6 @@ export declare class EventEmitterExtended extends EventEmitter {
     addListener(type: event, callback: cb): this;
     removeListener(type: event, callback: cb): this;
     once(type: event, callback: cb): this;
-    untill(event: event, untill: event, callback: cb): this;
+    untill(event: event, untill: event, callback: cb, finishedcb?: cb): this;
 }
 //# sourceMappingURL=extended-events.d.ts.map

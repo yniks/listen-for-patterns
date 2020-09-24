@@ -60,9 +60,9 @@ export class EventEmitterExtended extends EventEmitter {
             return this
         }
     }
-    untill(event:event,untill:event,callback:cb)
+    untill(event:event,untill:event,callback:cb,finishedcb:cb=()=>{})
     {
-        this.once(untill,()=>this.removeListener(event,callback))
+        this.once(untill,()=>{this.removeListener(event,callback);finishedcb();})
         return this.addListener(event,callback)
     }
 }
