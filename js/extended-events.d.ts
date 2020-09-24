@@ -7,18 +7,17 @@ import { pattern, target } from "object-pattern-match";
  * @requires object-pattern-match
  */
 export { pattern, target };
+declare type event = pattern | string | symbol;
+declare type cb = {
+    (...args: any[]): void;
+};
 export declare class EventEmitterExtended extends EventEmitter {
     #private;
     constructor(opts?: Object);
-    emit(...arg: [Object | string | symbol | target, ...Array<any>]): boolean;
-    addListener(type: pattern | string | symbol, callback: {
-        (...args: any[]): void;
-    }): this;
-    removeListener(type: pattern | string | symbol, callback: {
-        (...args: any[]): void;
-    }): this;
-    once(type: pattern | string | symbol, callback: {
-        (...args: any[]): void;
-    }): this;
+    emit(arg: Object | string | symbol | target, ...args: Array<any>): boolean;
+    addListener(type: event, callback: cb): this;
+    removeListener(type: event, callback: cb): this;
+    once(type: event, callback: cb): this;
+    untill(event: event, untill: event, callback: cb): this;
 }
 //# sourceMappingURL=extended-events.d.ts.map

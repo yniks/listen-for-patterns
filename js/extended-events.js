@@ -16,14 +16,14 @@ class EventEmitterExtended extends events_1.EventEmitter {
      */
     #patterns;
     #oneTime;
-    emit(...arg) {
-        if (!(arg[0] instanceof Object))
-            return super.emit(...arg);
+    emit(arg, ...args) {
+        if (!(arg instanceof Object))
+            return super.emit(arg, ...args);
         else {
             let hasemitted = false;
             for (let [pattern, callback] of this.#patterns) {
-                if (object_pattern_match_1.match(pattern, arg[0])) {
-                    callback(arg[0]);
+                if (object_pattern_match_1.match(pattern, arg)) {
+                    callback(arg);
                     hasemitted = true;
                     if (this.#oneTime.has(pattern)) {
                         this.#oneTime.delete(pattern);
@@ -59,6 +59,10 @@ class EventEmitterExtended extends events_1.EventEmitter {
             this.addListener(type, callback);
             return this;
         }
+    }
+    untill(event, untill, callback) {
+        this.once(untill, () => this.removeListener(event, callback));
+        return this.addListener(event, callback);
     }
 }
 exports.EventEmitterExtended = EventEmitterExtended;
